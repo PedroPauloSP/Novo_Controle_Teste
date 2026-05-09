@@ -51,5 +51,10 @@ categoriaRepository.deleteById(Cat.getId());
         return cat;
 
   }
+   public String CadastrarCategoria(){
+        return "categoria";
+    }
+ 
+  
 }
 

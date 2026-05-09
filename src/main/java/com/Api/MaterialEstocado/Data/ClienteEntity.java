@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Data
@@ -21,13 +22,13 @@ public class ClienteEntity {
  
     private Integer id;
    
-     @Size(min=2, message = "Informe ao menos 2 caracteres para o campo nome")
+   //  @Size(min=2, message = "Informe ao menos 2 caracteres para o campo nome")
     private String razaosocial;
  
-     @CPF(message="cnpj invalido")
+     //@CNPJ(message="cnpj invalido")
     private String cnpj;
    
-   @Email(message="Endereço inválido")
+   //@Email(message="Endereço inválido")
     private String endereco;
 
     public Integer getId() {

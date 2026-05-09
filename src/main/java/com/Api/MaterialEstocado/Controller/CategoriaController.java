@@ -20,9 +20,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/categoria")
 
 public class CategoriaController {
-
-    @Autowired
+     @Autowired
+   
     CategoriaService categoriaservice;
+     
+     @GetMapping("/cadastrar")
+
+    public ResponseEntity<CategoriaEntity> CadCategoria(@RequestBody CategoriaEntity cat) {
+
+        CategoriaEntity novaCategoria = categoriaservice.cadastrarcategoria(cat);
+
+        return new ResponseEntity<>(novaCategoria, HttpStatus.CREATED);
+    }
+
+    
 
     @GetMapping("/listar")
 

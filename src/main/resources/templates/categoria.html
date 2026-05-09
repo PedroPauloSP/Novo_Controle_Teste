@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+    <head>  
+        <title>Cadastro de Pessoa</title>  
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    </head> 
+    <body> 
+                <h1>Categoria</h1> 
+                <form th:action="@{/categoria}" th:object="${CategoriaEntity}" method="POST"> 
+                        <p>Nome: <input type="text" th:field="*{nome_cat}" /> </p> 
+                        <select id="Categoria" name = "categoria">
+                <option value=" ">Escolha... </option>
+                <option value ="MMM">Meta</option><!-- comment -->
+                <option value ="BBB">Beta</option><!-- comment -->
+            </select><!-- comment -->
+            <p id="resultado"></p>
+                        <p><input type="submit" value="Cadastrar" /></p> 
+                    </form> 
+        <select id="categoria"></select>
+<button onclick="preencherCores()">Preencher</button>
+
+<script>
+function preencherCategoria() {
+  const select = document.getElementById('cat');
+  select.innerHTML = '';
+  const cat = ['Vermelho', 'Azul', 'Verde'];
+  cat.forEach(cor => select.add(new Option(cat, cat.toLowerCase())));
+}
+</script>
+        
+        
+        
+        
+        
+        
+            </body> 
+</html> 

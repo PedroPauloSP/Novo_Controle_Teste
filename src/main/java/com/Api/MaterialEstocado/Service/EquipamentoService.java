@@ -3,6 +3,7 @@ package com.Api.MaterialEstocado.Service;
 
 import com.Api.MaterialEstocado.Data.EquipamentoEntity;
 import com.Api.MaterialEstocado.Data.EquipamentoRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,10 @@ public class EquipamentoService {
      equipamentoRepository.save(Equip);
      return Equip;
  }
+ /*
+ public  ArrayList<EquipamentoEntity>buscarEquipamento(){
+     EquipamentoService Equip = EquipamentoService()Equip.getEquipamentoId(EquipId);
+ return null;
+ }    */
 }
      

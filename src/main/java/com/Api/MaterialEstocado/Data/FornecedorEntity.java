@@ -23,13 +23,13 @@ public class FornecedorEntity {
  
     private Integer id;
    
-     @Size(min=2, message = "Informe ao menos 2 caracteres para o campo nome")
+  //   @Size(min=2, message = "Informe ao menos 2 caracteres para o campo nome")
     private String razaosocial;
  
-     @CPF(message="cnpj invalido")
+  //   @CPF(message="cnpj invalido")
     private String cnpj;
    
-   @Email(message="Endereço inválido")
+//   @Email(message="Endereço inválido")
     private String endereco;
 }
 
