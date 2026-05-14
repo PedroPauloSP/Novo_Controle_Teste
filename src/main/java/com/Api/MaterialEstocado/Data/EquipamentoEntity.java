@@ -25,6 +25,7 @@ public class EquipamentoEntity {
    
    @Size(min=2, message = "Informe ao menos 2 caracteres para o campo nome")
     private String nome;
+   
 
     
 }

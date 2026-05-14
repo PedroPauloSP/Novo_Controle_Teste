@@ -26,12 +26,12 @@ public class EntradaController {
     
     @GetMapping("/listar")  
     public ResponseEntity<List>getAllEntrada(){
-        List<EntradaEntity> entradas=entradaService.listarTodasEtradas();
+        List<EntradaEntity> entradas=entradaService.listarTodasEntradas();
       return new ResponseEntity<>(entradas,HttpStatus.OK);
     }
      @GetMapping("/pesquisar/{id}")
     public ResponseEntity<EntradaEntity> getEntradaById(@PathVariable Integer id) {
-        EntradaEntity entrada = entradaService.getentradaId(id);
+        EntradaEntity entrada = entradaService.getEntradaId(id);
         return new ResponseEntity<>(entrada, HttpStatus.OK);
     }
       @PostMapping("/adicionar")
@@ -40,11 +40,19 @@ public class EntradaController {
         return new ResponseEntity<>(novaEntrada, HttpStatus.CREATED);
     }
 
-    @PutMapping("/atualizar/{id}")
-    public ResponseEntity<EntradaEntity> atualizarEtrada(@PathVariable Integer id, @Valid @RequestBody EntradaEntity entrada) {
-        EntradaEntity entradaAtualizada = entradaService.atualizarEtrada(id, entrada);
-        return new ResponseEntity<>(entradaAtualizada, HttpStatus.OK);
-    }
+   @PutMapping("/atualizar/{id}")
+public ResponseEntity<EntradaEntity> atualizarEntrada(
+        @PathVariable Integer id,
+        @Valid @RequestBody EntradaEntity entrada) {
+
+    EntradaEntity entradaAtualizada =
+            entradaService.atualizarEntrada(id, entrada);
+
+    return new ResponseEntity<>(
+            entradaAtualizada,
+            HttpStatus.OK
+    );
+}
 
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarEntrada(@PathVariable Integer id) {
