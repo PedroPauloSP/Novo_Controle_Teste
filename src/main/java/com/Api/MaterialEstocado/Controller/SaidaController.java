@@ -30,7 +30,7 @@ public class SaidaController {
     }
      @GetMapping("/pesquisar/{id}")
     public ResponseEntity<SaidaEntity> getSaidaById(@PathVariable Integer id) {
-       SaidaEntity saida = saidaService.getsaidaId(id);
+       SaidaEntity saida = saidaService.getSaidaId(id);
         return new ResponseEntity<>(saida, HttpStatus.OK);
     }
       @PostMapping("/adicionar")

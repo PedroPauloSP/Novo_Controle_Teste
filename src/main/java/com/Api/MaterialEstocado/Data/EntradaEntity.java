@@ -1,5 +1,82 @@
-
 package com.Api.MaterialEstocado.Data;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import java.time.LocalDate;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "entrada")
+public class EntradaEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "equipamento_id", nullable = false)
+    private EquipamentoEntity equipamento;
+
+    @Min(value = 1, message = "Quantidade deve ser maior que zero")
+    @Column(nullable = false)
+    private Integer quantidade;
+    
+    @Column(nullable = false)
+private LocalDate data;
+
+    public EntradaEntity(Integer id, EquipamentoEntity equipamento, Integer quantidade, LocalDate data) {
+        this.id = id;
+        this.equipamento = equipamento;
+        this.quantidade = quantidade;
+        this.data = data;
+    }
+
+   
+
+    public EntradaEntity() {
+    }
+}
+
+
+
+
+
+/*package com.Api.MaterialEstocado.Data;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "entrada")
+public class EntradaEntity {
+    
+    public EntradaEntity(Integer id, EquipamentoEntity equipamento, Integer quantidade) {
+        this.id = id;
+        this.equipamento = equipamento;
+        this.quantidade = quantidade;
+    }
+
+    public EntradaEntity() {
+    }
+    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "equipamento_id")
+    private EquipamentoEntity equipamento;
+
+    @Min(value = 1, message = "Quantidade deve ser maior que zero")
+    private Integer quantidade;
+}
+
+*/
+/*package com.Api.MaterialEstocado.Data;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,8 +98,10 @@ public class EntradaEntity {
  
     private Integer id;
    
-   
-   
+    private EquipamentoEntity equipamento_id;
+    
+    private int quantidade; 
+   /*
     @CNPJ(message="CNPJ invalido")
     private String cnpj;
     
@@ -37,3 +116,4 @@ public class EntradaEntity {
    
     
 }
+*/
