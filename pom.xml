@@ -80,6 +80,9 @@
                                                          <version>1.18.28</version>
 						</path>
 					</annotationProcessorPaths>
+				 <compilerArgs>
+				  <arg>-Xlint</arg>
+				 </compilerArgs>
 				</configuration>
 			</plugin>
 			<plugin>
