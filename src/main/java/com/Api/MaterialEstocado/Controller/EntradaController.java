@@ -26,7 +26,7 @@ public class EntradaController {
     
     @GetMapping("/listar")  
     public ResponseEntity<List>getAllEntrada(){
-        List<EntradaEntity> entradas=entradaService.listarTodasEtradas();
+        List<EntradaEntity> entradas=entradaService.listarTodasEntradas();
       return new ResponseEntity<>(entradas,HttpStatus.OK);
     }
      @GetMapping("/pesquisar/{id}")
@@ -42,7 +42,7 @@ public class EntradaController {
 
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<EntradaEntity> atualizarEtrada(@PathVariable Integer id, @Valid @RequestBody EntradaEntity entrada) {
-        EntradaEntity entradaAtualizada = entradaService.atualizarEtrada(id, entrada);
+        EntradaEntity entradaAtualizada = entradaService.atualizarEntrada(id, entrada);
         return new ResponseEntity<>(entradaAtualizada, HttpStatus.OK);
     }
 

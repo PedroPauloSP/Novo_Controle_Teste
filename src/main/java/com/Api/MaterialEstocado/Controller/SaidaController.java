@@ -3,6 +3,7 @@ package com.Api.MaterialEstocado.Controller;
 
 import com.Api.MaterialEstocado.Data.SaidaEntity;
 import com.Api.MaterialEstocado.Service.SaidaService;
+
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
