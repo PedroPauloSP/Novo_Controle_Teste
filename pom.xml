@@ -11,7 +11,7 @@
     <groupId>com.Api</groupId>
     <artifactId>MaterialEstocado</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Novo_Controle</name>
+    <name>Novo_Controle_Teste</name>
     <description>Api Rest project for Spring Boot</description>
     <url/>
     <licenses>
