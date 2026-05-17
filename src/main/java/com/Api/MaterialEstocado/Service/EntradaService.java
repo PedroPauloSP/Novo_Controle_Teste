@@ -2,6 +2,10 @@ package com.Api.MaterialEstocado.Service;
 
 import com.Api.MaterialEstocado.Data.EntradaEntity;
 import com.Api.MaterialEstocado.Data.EntradaRepository;
+import com.Api.MaterialEstocado.Data.EquipamentoEntity;
+import com.Api.MaterialEstocado.Data.EquipamentoRepository;
+import com.Api.MaterialEstocado.Data.FornecedorEntity;
+import com.Api.MaterialEstocado.Data.FornecedorRepository;
 
 import java.util.List;
 
@@ -14,123 +18,69 @@ public class EntradaService {
     @Autowired
     private EntradaRepository entradaRepository;
 
+    @Autowired
+    private EquipamentoRepository equipamentoRepository;
+
+    @Autowired
+    private FornecedorRepository fornecedorRepository;
+
     // CADASTRAR
-    public EntradaEntity cadastrarEntrada(EntradaEntity entra){
+    public EntradaEntity cadastrarEntrada(EntradaEntity entra) {
 
         entra.setId(null);
+
+        EquipamentoEntity equipamento = buscarEquipamento(entra.getEquipamento().getId());
+        FornecedorEntity fornecedor = buscarFornecedor(entra.getFornecedor().getId());
+
+        entra.setEquipamento(equipamento);
+        entra.setFornecedor(fornecedor);
 
         return entradaRepository.save(entra);
     }
 
     // ATUALIZAR
-    public EntradaEntity atualizarEntrada(
-            Integer entraId,
-            EntradaEntity entradaRequest) {
+    public EntradaEntity atualizarEntrada(Integer entraId, EntradaEntity entradaRequest) {
 
         EntradaEntity entra = getEntradaId(entraId);
 
-        if (entra == null) {
-            throw new RuntimeException("Entrada não encontrada");
-        }
+        EquipamentoEntity equipamento = buscarEquipamento(entradaRequest.getEquipamento().getId());
+        FornecedorEntity fornecedor = buscarFornecedor(entradaRequest.getFornecedor().getId());
 
-        entra.setEquipamento(
-                entradaRequest.getEquipamento()
-        );
-
-        entra.setQuantidade(
-                entradaRequest.getQuantidade()
-        );
-
-        entra.setData(
-                entradaRequest.getData()
-        );
+        entra.setEquipamento(equipamento);
+        entra.setFornecedor(fornecedor);
+        entra.setQuantidade(entradaRequest.getQuantidade());
+        entra.setData(entradaRequest.getData());
 
         return entradaRepository.save(entra);
     }
 
     // BUSCAR POR ID
-    public EntradaEntity getEntradaId(Integer entraId){
-
-        return entradaRepository
-                .findById(entraId)
-                .orElse(null);
+    public EntradaEntity getEntradaId(Integer entraId) {
+        return entradaRepository.findById(entraId)
+                .orElseThrow(() -> new RuntimeException("Entrada não encontrada"));
     }
 
     // LISTAR
-    public List<EntradaEntity> listarTodasEntradas(){
-
+    public List<EntradaEntity> listarTodasEntradas() {
         return entradaRepository.findAll();
     }
 
     // DELETAR
-    public void deletarEntrada(Integer entraId){
+    public void deletarEntrada(Integer entraId) {
 
         EntradaEntity entra = getEntradaId(entraId);
 
-        if (entra == null) {
-            throw new RuntimeException("Entrada não encontrada");
-        }
-
         entradaRepository.deleteById(entra.getId());
     }
-}
 
-
-
-
-/*
-package com.Api.MaterialEstocado.Service;
-
-import com.Api.MaterialEstocado.Data.EntradaEntity;
-import com.Api.MaterialEstocado.Data.EntradaRepository;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-@Service
-public class EntradaService {
-     @Autowired
- EntradaRepository entradaRepository;
- 
- public EntradaEntity cadastrarEntrada(EntradaEntity entra){
-     entra.setId(null);
-     
-     entradaRepository.save(entra);
-     return entra;
- }
-    
-    public EntradaEntity atualizarEtrada(Integer entraId, EntradaEntity entradaRequest) {
-
-        EntradaEntity entra = getentradaId (entraId);
-        entra.setRazaoSocial(entradaRequest.getRazaoSocial());
-        entra.setCnpj(entradaRequest.getCnpj());
-        entra.setTelefone(entradaRequest.getTelefone());
-        entra.setEmail(entradaRequest.getEmail());
-
-       
-
-        entradaRepository.save(entra);
-
-        return entra;
-
+    // MÉTODOS AUXILIARES (IMPORTANTE)
+    private EquipamentoEntity buscarEquipamento(Integer id) {
+        return equipamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Equipamento não encontrado"));
     }
-     public EntradaEntity getentradaId(Integer entraId) { 
 
- return entradaRepository.findById(entraId).orElse(null);
- 
-// return funcionarioRepository.findById(funcId).orElseThrow(() -> new ResourceNotFoundException("Funcionário não encontrado " + funcId)); 
- 
-     } 
-  public List<EntradaEntity> listarTodasEtradas() { 
-return entradaRepository.findAll(); 
-
-} 
-
-public void deletarEntrada(Integer entraId) { 
-EntradaEntity entra = getentradaId(entraId); 
-
-entradaRepository.deleteById(entra.getId()); 
-
-} 
+    private FornecedorEntity buscarFornecedor(Integer id) {
+        return fornecedorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
+    }
 }
-*/

@@ -1,34 +1,27 @@
 package com.Api.MaterialEstocado.Controller;
 
 import com.Api.MaterialEstocado.Service.EstoqueService;
+
 import java.util.Map;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/estoque")
 @RequiredArgsConstructor
 public class EstoqueController {
 
     private final EstoqueService estoqueService;
 
-    @GetMapping("/estoque/{equipamentoId}")
-    public Map<String, Object> estoque(
-            @PathVariable Integer equipamentoId) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> consultar(
+            @PathVariable Integer id) {
 
-        return estoqueService.consultarEstoque(equipamentoId);
+        Map<String, Object> estoque = estoqueService.consultarEstoque(id);
+
+        return new ResponseEntity<>(estoque, HttpStatus.OK);
     }
 }
-   
-    
-   /* @GetMapping("/{equipamentoId}")
-    public ResponseEntity<Integer> consultarEstoque(
-            @PathVariable Integer equipamentoId){
-
-        Integer estoque =
-                estoqueService.calcularEstoque(equipamentoId);
-
-        return ResponseEntity.ok(estoque);
-    }
-}*/
